@@ -7,7 +7,7 @@ const env = require('dotenv')
 const { MongoClient, ServerApiVersion } = require('mongodb');
 env.config()
 const port = process.env.PORT || 4040
-const uri ="mongodb+srv://rjReactDev:90QcwhEs8LNtwy7L@cluster0.as2wbdp.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://rjReactDev:90QcwhEs8LNtwy7L@cluster0.as2wbdp.mongodb.net/?retryWrites=true&w=majority";
 
 //db connection 
 // mongoose.connect(uri)
@@ -17,6 +17,7 @@ const uri ="mongodb+srv://rjReactDev:90QcwhEs8LNtwy7L@cluster0.as2wbdp.mongodb.n
 // })
 
 const client = new MongoClient(uri, {
+  useUnifiedTopology: true,
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -28,7 +29,7 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     // Send a ping to confirm a successful connection
-   // await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
@@ -58,5 +59,5 @@ app.use(morgan('dev'))
 app.use("/", postRouter)
 
 app.listen(port, () => [
-    console.log(`Server listening on port : ${port}`)
+  console.log(`Server listening on port : ${port}`)
 ])
