@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const env = require('dotenv')
-const mongoose=require('mongoose')
+//const mongoose=require('mongoose')
 const { MongoClient, ServerApiVersion } = require('mongodb');
 env.config()
 const port = process.env.PORT || 4040
