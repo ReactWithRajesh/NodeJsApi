@@ -5,6 +5,7 @@ const express=require('express');
 const router =express.Router();
 
 router.get('/',postControllers.getPosts);
+router.post('/post',postControllers.createPost);
 
 module.exports=router;
 // exports.getPosts = (req, res) => {
