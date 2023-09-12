@@ -1,11 +1,17 @@
-const postControllers=require('../controllers/post');
+//const postControllers = require('../controllers/post');
+//destructured using to aboud repeatation 
 
-const express=require('express');
+
+const {createPost, getPosts}=require('../controllers/post');
+
+const express = require('express');
+
+const validator = require('../validators')
 
 const router =express.Router();
 
-router.get('/',postControllers.getPosts);
-router.post('/post',postControllers.createPost);
+router.get('/',getPosts);
+router.post('/post',validator.createPostValidator,createPost);
 
 module.exports=router;
 // exports.getPosts = (req, res) => {

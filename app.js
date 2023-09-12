@@ -4,8 +4,9 @@ const app = express()
 const morgan = require('morgan')
 const env = require('dotenv')
 const bodyParser = require('body-parser')
-const mongoose=require('mongoose')
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const expressValidator = require('express-validator')
+const mongoose = require('mongoose')
+//const { MongoClient, ServerApiVersion } = require('mongodb');
 env.config()
 const port = process.env.PORT || 4040
 const uri = process.env.MONGO_URI
@@ -80,9 +81,10 @@ const postRouter = require('./routes/post')
 
 // app.use(myOwnMiddleWare)
 
-app.use(morgan('dev'))
-app.use(bodyParser.json())
-app.use("/", postRouter)
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(expressValidator());
+app.use("/", postRouter);
 
 app.listen(port, () => [
   console.log(`Server listening on port : ${port}`)
